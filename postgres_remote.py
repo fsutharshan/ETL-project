@@ -19,9 +19,6 @@ df.to_sql('users', if_exists='replace',con=engine)
 # Should retrieve the sample data from postgres hosted on Heroku
 print(engine.execute("SELECT * FROM users").fetchall())
 
-# Drop world_happiness table if exists throwing errors
-#print(engine.execute("DROP TABLE world_happiness IF EXISTS").fetchall())
-#print(engine.execute("DROP TABLE world_happiness").fetchall())
 
 meta = MetaData()
 # create world_happiness table with two column in the postgres database on Heroku
@@ -30,6 +27,7 @@ world_happiness = Table(
     Column('country', String), 
    Column('score', Integer),
 )
+#meta.drop_all(engine)
 meta.create_all(engine)
 
 # read the contents of the sql insert file and feed into execute
@@ -37,6 +35,7 @@ fd = open('InsertData.sql', 'r')
 sqlFile = fd.read()
 fd.close()
 
+engine.execute("Delete from world_happiness")
 print(engine.execute(sqlFile))
 #print a list of countries with happiness score greater than 7
 print(engine.execute("SELECT * FROM world_happiness where score > 6").fetchall())
