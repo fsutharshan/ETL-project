@@ -1,25 +1,24 @@
-ETL-Project Documentation:
+# ETL-Project Documentation:
 
 In this project we combined a datasource that quantifies the happiness of a country 
 with a datasource that provides metrics that might affect the happiness of a country.
 Then we upload this combined dataset to a Heroku remote database.
 
 
- 
-Extract:
+## Extract:
 The data was extracted from the following sources as CSV files
 
-UN Country Data:
+* UN Country Data:
 https://www.kaggle.com/sudalairajkumar/undata-country-profiles
 
-World happiness Report:
+* World happiness Report:
 https://www.kaggle.com/unsdsn/world-happiness.
 
-World Happiness Data Set ---> 2019.csv
-Country Profile Data Set ---> country_profile_variables.csv
+* World Happiness Data Set ---> 2019.csv
+* Country Profile Data Set ---> country_profile_variables.csv
 
 
-Transform:
+## Transform:
 Loaded the csv files into seperate dataframes in Pandas. Using a jupyter notebook (Transform_jtp.ipynb)
 There were mismatches in the country names in both dataframes.This was fixed by using 
  country_converter python library.
@@ -28,7 +27,7 @@ The merged dataframe were looped through to generate SQL "insert" statement and 
 These files were placed under regiontables/ subfolder.
 
 
-Load:
+## Load:
 Created a new remote database to store the data extracted and transformed above.
 Creted a schema to match the necessary data that need to be loaded (some unnecessary data columns were not included).
 Only one table named world_happiness is created in the target database.
