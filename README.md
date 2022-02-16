@@ -29,7 +29,7 @@ These files were placed under regiontables/ subfolder.
 
 ## Load:
 Created a new remote database to store the data extracted and transformed above.
-Creted a schema to match the necessary data that need to be loaded (some unnecessary data columns were not included).
+Created a schema to match the necessary data that need to be loaded (some unnecessary data columns were not included).
 Only one table named world_happiness is created in the target database.
 
 Created a python script  (postgres_remote.py ) to load all the "insert" scripts to the table in the database.
